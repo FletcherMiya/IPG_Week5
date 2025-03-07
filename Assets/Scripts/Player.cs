@@ -1,9 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public CharacterStats stats = new CharacterStats(100, 20, 5f);
+    public CharacterStats stats = new CharacterStats(10, 20, 5f);
     public float attackRange = 5f;
     public float attackCooldown = 0.5f;
     private float lastAttackTime;
@@ -14,11 +14,21 @@ public class Player : MonoBehaviour
 
     private Vector2 minBounds, maxBounds;
 
+    private bool isInvincible = false;
+    public float invincibilityDuration = 1f;
+    public float flashInterval = 0.1f;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.drag = 0;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
 
         CalculateCameraBounds();
     }
@@ -98,5 +108,60 @@ public class Player : MonoBehaviour
         float clampedX = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
         float clampedY = Mathf.Clamp(position.y, minBounds.y, maxBounds.y);
         return new Vector2(clampedX, clampedY);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (isInvincible) return;
+
+        stats.health -= damage;
+        Debug.Log($"玩家受到 {damage} 点伤害，剩余血量: {stats.health}");
+
+        DamageEffect.Instance.ShowDamageEffect();
+        CameraShake.Instance.Shake();
+
+        if (stats.health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("游戏结束，玩家死亡！");
+        Time.timeScale = 0;
+    }
+
+    IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        float elapsedTime = 0f;
+        bool isVisible = true;
+
+        while (elapsedTime < invincibilityDuration)
+        {
+            elapsedTime += flashInterval;
+            isVisible = !isVisible;
+
+            if (spriteRenderer != null)
+            {
+                Color newColor = originalColor;
+                newColor.a = isVisible ? 1f : 0.2f;
+                spriteRenderer.color = newColor;
+            }
+
+            yield return new WaitForSeconds(flashInterval);
+        }
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+
+        isInvincible = false;
     }
 }

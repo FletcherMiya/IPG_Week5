@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     public CharacterStats stats;
     protected Transform player;
 
+    public float damage = 10f;
+
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -30,4 +32,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Player>().TakeDamage(damage);
+        }
+    }
 }
