@@ -4,11 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public CharacterStats stats = new CharacterStats(10, 20, 5f);
-    public float attackRange = 5f;
-    public float attackCooldown = 0.5f;
-    private float lastAttackTime;
 
-    public GameObject projectilePrefab;
     private Rigidbody2D rb;
     private Vector2 movementInput;
 
@@ -22,6 +18,7 @@ public class Player : MonoBehaviour
     private Color originalColor;
 
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,14 +26,11 @@ public class Player : MonoBehaviour
         rb.drag = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
-
         CalculateCameraBounds();
     }
 
     void Update()
     {
-        HandleInput();
-        Attack();
     }
 
     void FixedUpdate()
@@ -44,50 +38,12 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    void HandleInput()
+    void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        movementInput = new Vector2(h, v).normalized;
-    }
-
-    void Move()
-    {
-        Vector2 newPosition = rb.position + movementInput * stats.speed * Time.fixedDeltaTime;
-        newPosition = ClampToCameraBounds(newPosition);
-        rb.MovePosition(newPosition);
-    }
-
-    void Attack()
-    {
-        if (Time.time - lastAttackTime < attackCooldown) return;
-
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject nearestEnemy = null;
-        float minDist = attackRange;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector2.Distance(transform.position, enemy.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy)
-        {
-            Vector2 dir = (nearestEnemy.transform.position - transform.position).normalized;
-            FireProjectile(dir);
-            lastAttackTime = Time.time;
-        }
-    }
-
-    void FireProjectile(Vector2 direction)
-    {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().SetDirection(direction);
+        Vector2 movementInput = new Vector2(h, v).normalized;
+        rb.velocity = movementInput * stats.speed;
     }
 
     void CalculateCameraBounds()
@@ -117,7 +73,7 @@ public class Player : MonoBehaviour
         stats.health -= damage;
         Debug.Log($"玩家受到 {damage} 点伤害，剩余血量: {stats.health}");
 
-        DamageEffect.Instance.ShowDamageEffect();
+        ScreenEffect.Instance.TriggerEffect(1f, 0.5f, Color.red);
         CameraShake.Instance.Shake();
 
         if (stats.health <= 0)
@@ -130,6 +86,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     void Die()
     {
         Debug.Log("游戏结束，玩家死亡！");
@@ -139,6 +96,9 @@ public class Player : MonoBehaviour
     IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+
         float elapsedTime = 0f;
         bool isVisible = true;
 
@@ -161,6 +121,8 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.color = originalColor;
         }
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
 
         isInvincible = false;
     }
