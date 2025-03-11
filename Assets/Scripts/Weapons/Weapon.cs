@@ -5,9 +5,11 @@ public abstract class Weapon : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public Transform firePoint;
+
     protected int maxAmmo;
     protected float fireRate;
     protected float reloadTime;
+    protected float recoil;
     protected bool isAutomatic;
 
     protected int currentAmmo;
@@ -63,6 +65,11 @@ public abstract class Weapon : MonoBehaviour
         {
             projectile.GetComponent<Projectile>().SetShooter(transform.parent.gameObject);
         }
+    }
+
+    protected virtual void ApplyRecoil(Vector2 direction, float magnitude)
+    {
+
     }
 
     protected virtual IEnumerator Reload()
