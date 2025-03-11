@@ -63,13 +63,21 @@ public abstract class Weapon : MonoBehaviour
 
         if (transform.parent != null)
         {
-            projectile.GetComponent<Projectile>().SetShooter(transform.parent.gameObject);
+            GameObject shooter = transform.parent.gameObject;
+            projectile.GetComponent<Projectile>().SetShooter(shooter);
+
+            ApplyRecoil(shooter, direction);
         }
     }
 
-    protected virtual void ApplyRecoil(Vector2 direction, float magnitude)
+    private void ApplyRecoil(GameObject shooter, Vector2 shotDirection)
     {
-
+        Rigidbody2D rb = shooter.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            Vector2 recoilDirection = -shotDirection.normalized;
+            rb.AddForce(recoilDirection * recoil, ForceMode2D.Impulse);
+        }
     }
 
     protected virtual IEnumerator Reload()

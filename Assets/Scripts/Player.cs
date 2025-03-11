@@ -43,7 +43,8 @@ public class Player : MonoBehaviour, IDamageable
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Vector2 movementInput = new Vector2(h, v).normalized;
-        rb.velocity = movementInput * stats.speed;
+
+        rb.velocity = rb.velocity * 0.9f + movementInput * stats.speed * 0.1f;
     }
 
     void CalculateCameraBounds()
