@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534418816130719902, guid: 3d77a8ff4f888b94bbaf383a86b0be01, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6500686041858814219, guid: 3d77a8ff4f888b94bbaf383a86b0be01, type: 3}
       propertyPath: Ammo
@@ -806,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1807189916207368807, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6893032700105641579, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
       propertyPath: m_LocalPosition.x

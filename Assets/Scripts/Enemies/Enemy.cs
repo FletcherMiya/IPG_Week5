@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public CharacterStats stats;
     protected Transform player;
@@ -38,9 +38,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damage)
     {
-        stats.health -= amount;
+        stats.health -= damage;
         if (stats.health <= 0)
         {
             GameManager.Instance.AddScore(10);
@@ -50,9 +50,12 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            if (damageable is Player)
+            {
+                damageable.TakeDamage(damage);
+            }
         }
     }
 }

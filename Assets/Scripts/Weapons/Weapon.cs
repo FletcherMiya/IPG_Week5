@@ -58,6 +58,11 @@ public abstract class Weapon : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().SetDirection(direction);
+
+        if (transform.parent != null)
+        {
+            projectile.GetComponent<Projectile>().SetShooter(transform.parent.gameObject);
+        }
     }
 
     protected virtual IEnumerator Reload()
