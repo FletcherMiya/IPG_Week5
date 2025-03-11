@@ -51,6 +51,7 @@ public abstract class Weapon : MonoBehaviour
         lastFireTime = Time.time;
 
         ScreenEffect.Instance.TriggerEffect(0.2f, 0.1f, Color.white);
+        CameraShake.Instance.Shake(0.05f, 0.05f);
     }
 
     protected virtual void FireProjectile(Vector2 direction)
@@ -62,10 +63,10 @@ public abstract class Weapon : MonoBehaviour
     protected virtual IEnumerator Reload()
     {
         isReloading = true;
-        Debug.Log($"{gameObject.name} 正在装填...");
+        Debug.Log($"{gameObject.name} is reloading...");
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         isReloading = false;
-        Debug.Log($"{gameObject.name} 装填完成！");
+        Debug.Log($"{gameObject.name} reloaded!");
     }
 }

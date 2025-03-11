@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         stats.health -= damage;
         Debug.Log($"Player took {damage} damage, hp remaining: {stats.health}");
 
-        ScreenEffect.Instance.TriggerEffect(1f, 0.5f, Color.red);
+        ScreenEffect.Instance.TriggerEffect(0.5f, 0.5f, Color.red);
         CameraShake.Instance.Shake();
 
         if (stats.health <= 0)
