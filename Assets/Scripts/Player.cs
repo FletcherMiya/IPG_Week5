@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         if (isInvincible) return;
 
         stats.health -= damage;
-        Debug.Log($"玩家受到 {damage} 点伤害，剩余血量: {stats.health}");
+        Debug.Log($"Player took {damage} damage, hp remaining: {stats.health}");
 
         ScreenEffect.Instance.TriggerEffect(1f, 0.5f, Color.red);
         CameraShake.Instance.Shake();
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("游戏结束，玩家死亡！");
+        Debug.Log("Game Over!");
         Time.timeScale = 0;
     }
 

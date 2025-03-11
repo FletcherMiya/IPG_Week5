@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
     protected Transform player;
     private Rigidbody2D rb;
 
-    public float damage = 10f; // 敌人造成的伤害
-    public float stoppingDistance = 0.5f; // 防止敌人紧贴玩家
+    public float damage = 10f;
+    public float stoppingDistance = 0.5f;
 
     protected virtual void Start()
     {

@@ -56,6 +56,6 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        Debug.Log("当前分数: " + score);
+        Debug.Log("Score: " + score);
     }
 }
