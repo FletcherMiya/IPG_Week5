@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
+    private bool isDead = false;
+
 
 
     void Start()
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (isInvincible) return;
+        if (isInvincible || isDead) return;
 
         stats.health -= damage;
         Debug.Log($"Player took {damage} damage, hp remaining: {stats.health}");
@@ -87,11 +89,25 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-
-    void Die()
+    public bool checkDead()
     {
-        Debug.Log("Game Over!");
-        Time.timeScale = 0;
+        return (isDead);
+    }
+
+
+    private void Die()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        StopAllCoroutines();
+        rb.velocity = Vector2.zero;
+
+        ScreenEffect.Instance.CancelEffect();
+
+        CameraShake.Instance.StopShake();
+
+        GameManager.Instance.GameOver();
     }
 
     IEnumerator InvincibilityCoroutine()

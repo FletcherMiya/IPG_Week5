@@ -10,6 +10,8 @@ public class CameraShake : MonoBehaviour
 
     private Vector3 originalPosition;
 
+    private Coroutine shakeCoroutine;
+
     void Awake()
     {
         if (Instance == null)
@@ -31,13 +33,23 @@ public class CameraShake : MonoBehaviour
     public void Shake()
     {
         StopAllCoroutines();
-        StartCoroutine(ShakeCoroutine());
+        shakeCoroutine = StartCoroutine(ShakeCoroutine());
     }
 
     public void Shake(float magnitude, float duration)
     {
         StopAllCoroutines();
         StartCoroutine(ShakeCoroutine(magnitude, duration));
+    }
+
+    public void StopShake()
+    {
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine);
+            shakeCoroutine = null;
+            transform.localPosition = originalPosition;
+        }
     }
 
     private IEnumerator ShakeCoroutine()

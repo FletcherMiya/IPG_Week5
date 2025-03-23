@@ -42,7 +42,9 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Shoot()
     {
-        if (currentAmmo <= 0) return;
+        GameObject player = transform.parent.gameObject;
+
+        if (currentAmmo <= 0 || player.GetComponent<Player>().checkDead()) return;
 
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;

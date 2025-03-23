@@ -9,6 +9,8 @@ public class ScreenEffect : MonoBehaviour
     private Image effectImage;
     private Color originalColor;
 
+    private Coroutine currentEffectCoroutine;
+
     void Awake()
     {
         if (Instance == null)
@@ -41,7 +43,17 @@ public class ScreenEffect : MonoBehaviour
         }
 
         StopAllCoroutines();
-        StartCoroutine(EffectCoroutine(maxAlpha, duration));
+        currentEffectCoroutine = StartCoroutine(EffectCoroutine(maxAlpha, duration));
+    }
+
+    public void CancelEffect()
+    {
+        if (currentEffectCoroutine != null)
+        {
+            StopCoroutine(currentEffectCoroutine);
+            currentEffectCoroutine = null;
+            SetAlpha(0f);
+        }
     }
 
     private IEnumerator EffectCoroutine(float maxAlpha, float duration)
