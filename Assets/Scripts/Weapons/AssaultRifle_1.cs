@@ -8,7 +8,7 @@ public class AssaultRifle : Weapon
     [SerializeField] private float Recoil = 100f;
     [SerializeField] private bool IsAutomatic = true;
 
-    protected override void Start()
+    protected override void Awake()
     {
         base.Start();
         maxAmmo = Ammo;
@@ -18,5 +18,6 @@ public class AssaultRifle : Weapon
         recoil = Recoil;
 
         currentAmmo = maxAmmo;
+
     }
 }

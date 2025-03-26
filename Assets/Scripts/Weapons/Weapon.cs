@@ -16,7 +16,20 @@ public abstract class Weapon : MonoBehaviour
     protected bool isReloading = false;
     protected float lastFireTime;
 
+    #region Getters
+
+    public int CurrentAmmo => currentAmmo;
+    public int MaxAmmo => maxAmmo;
+    public bool IsReloading => isReloading;
+
+    #endregion
+
     protected virtual void Start()
+    {
+        currentAmmo = maxAmmo;
+    }
+
+    protected virtual void Awake()
     {
         currentAmmo = maxAmmo;
     }
