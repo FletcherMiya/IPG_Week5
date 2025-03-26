@@ -6,13 +6,12 @@ public class PlayerHealthUI : MonoBehaviour
     public Image healthFill;
     private Player player;
 
-    [Header("Æ½»¬²ÎÊý")]
     public float transitionDuration = 0.3f;
     public float decelerationFactor = 2f;
 
     private float displayFill;
     private float targetFill;
-    private float transitionTime; 
+    private float transitionTime;
 
     void Start()
     {

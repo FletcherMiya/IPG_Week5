@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AmmoUIManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class AmmoUIManager : MonoBehaviour
 
     private List<GameObject> bulletSegments = new List<GameObject>();
     private float containerWidth;
+
+    public TextMeshProUGUI ammoText;
 
     void Start()
     {
@@ -19,12 +22,16 @@ public class AmmoUIManager : MonoBehaviour
 
         BuildSegments();
         UpdateSegments();
+        UpdateAmmoText();
     }
 
     void Update()
     {
         if (weapon != null)
+        {
             UpdateSegments();
+            UpdateAmmoText();
+        }
     }
 
     [SerializeField] private float spacing = 5f;
@@ -69,6 +76,21 @@ public class AmmoUIManager : MonoBehaviour
         {
             int reverseIndex = bulletSegments.Count - 1 - i;
             bulletSegments[reverseIndex].SetActive(i < currentAmmo);
+        }
+
+    }
+
+    void UpdateAmmoText()
+    {
+        if (ammoText == null || weapon == null) return;
+
+        if (weapon.IsReloading)
+        {
+            ammoText.text = "Reloading";
+        }
+        else
+        {
+            ammoText.text = $"{weapon.CurrentAmmo}";
         }
     }
 }
