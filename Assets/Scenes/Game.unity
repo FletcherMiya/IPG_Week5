@@ -122,6 +122,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &239007019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239007020}
+  - component: {fileID: 239007021}
+  m_Layer: 5
+  m_Name: AmmoBarContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &239007020
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239007019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1804541693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: 500, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &239007021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239007019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c2ec5df9bbde949a2ae65a0696f491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSegmentPrefab: {fileID: 7805387114735973897, guid: eb848012db357a54789660f679a8bce0, type: 3}
+  weapon: {fileID: 6459279738644081342}
+  spacing: 2
 --- !u!1 &270801934
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e131223d3375cb4eb681a041496bd76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthFill: {fileID: 0}
+  healthFill: {fileID: 770030492}
+  transitionDuration: 1
+  decelerationFactor: 1.5
 --- !u!4 &540977339
 Transform:
   m_ObjectHideFlags: 0
@@ -656,11 +709,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 28f17dc30a6c10f46bdbe0b5d52e27e2, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1369,6 +1422,7 @@ RectTransform:
   - {fileID: 926161321}
   - {fileID: 1915948330}
   - {fileID: 270801935}
+  - {fileID: 239007020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1463,6 +1517,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6893032700105641579, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
   m_PrefabInstance: {fileID: 6515610665231438420}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6459279738644081342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8120530846262817220, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
+  m_PrefabInstance: {fileID: 6515610665231438420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895e80f2761a538418a043e85aa6da9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6515610665231438420
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmmoUI : MonoBehaviour
+public class AmmoUIManager : MonoBehaviour
 {
     public GameObject bulletSegmentPrefab;
     public Weapon weapon;
