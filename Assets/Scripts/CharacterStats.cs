@@ -1,13 +1,15 @@
 [System.Serializable]
-public struct CharacterStats
+public class CharacterStats
 {
+    public float maxHealth;
     public float health;
     public float damage;
     public float speed;
 
-    public CharacterStats(float health, float damage, float speed)
+    public CharacterStats(float maxHealth, float damage, float speed)
     {
-        this.health = health;
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
         this.damage = damage;
         this.speed = speed;
     }
