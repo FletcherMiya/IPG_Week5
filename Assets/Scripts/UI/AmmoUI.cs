@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AmmoUIManager : MonoBehaviour
+public class AmmoUI : MonoBehaviour
 {
     public GameObject bulletSegmentPrefab;
     public Weapon weapon;

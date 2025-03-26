@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class GameManager : MonoBehaviour
     [Header("UI ¿ØÖÆ")]
     public GameObject gameOverPanel;
     public Button restartButton;
+    public TextMeshProUGUI scoreText;
 
     private int score = 0;
+    public int Score => score;
 
     private void Awake()
     {
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour
 
         if (restartButton != null)
             restartButton.onClick.AddListener(RestartGame);
+    }
+
+    private void Update()
+    {
+        UpdateScoreText();
     }
 
     private void SpawnEnemy()
@@ -79,5 +87,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
+    }
+
+    void UpdateScoreText()
+    {
+        scoreText.text = $"{score}";
     }
 }
