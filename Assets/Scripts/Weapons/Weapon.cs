@@ -36,8 +36,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (isReloading) return;
-
+        if (!CanShoot()) return;
 
         if ((isAutomatic && Input.GetMouseButton(0)) || (!isAutomatic && Input.GetMouseButtonDown(0)))
         {
@@ -57,7 +56,9 @@ public abstract class Weapon : MonoBehaviour
     {
         GameObject player = transform.parent.gameObject;
 
-        if (currentAmmo <= 0 || player.GetComponent<Player>().checkDead()) return;
+        if (currentAmmo <= 0) return;
+        if (player.GetComponent<Player>().checkDead()) return;
+        if (GameManager.Instance != null && GameManager.Instance.IsGamePaused) return;
 
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
@@ -103,5 +104,13 @@ public abstract class Weapon : MonoBehaviour
         currentAmmo = maxAmmo;
         isReloading = false;
         Debug.Log($"{gameObject.name} reloaded!");
+    }
+
+    protected bool CanShoot()
+    {
+        if (isReloading) return false;
+        if (GameManager.Instance != null && GameManager.Instance.IsGamePaused) return false;
+        if (transform.parent.GetComponent<Player>().checkDead()) return false;
+        return true;
     }
 }

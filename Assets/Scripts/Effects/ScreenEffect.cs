@@ -27,7 +27,6 @@ public class ScreenEffect : MonoBehaviour
 
         if (effectImage == null)
         {
-            Debug.LogError("ScreenEffect 需要 Image 组件！");
             return;
         }
 
@@ -63,7 +62,7 @@ public class ScreenEffect : MonoBehaviour
         float timer = 0;
         while (timer < duration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             float alpha = Mathf.Lerp(maxAlpha, 0, timer / duration);
             SetAlpha(alpha);
             yield return null;

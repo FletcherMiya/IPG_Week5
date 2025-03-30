@@ -58,7 +58,7 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < shakeDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float x = Random.Range(-1f, 1f) * shakeMagnitude;
             float y = Random.Range(-1f, 1f) * shakeMagnitude;
             transform.localPosition = originalPosition + new Vector3(x, y, 0);
@@ -75,7 +75,7 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
             transform.localPosition = originalPosition + new Vector3(x, y, 0);
