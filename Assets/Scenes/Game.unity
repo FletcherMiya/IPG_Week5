@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSegmentPrefab: {fileID: 7805387114735973897, guid: eb848012db357a54789660f679a8bce0, type: 3}
-  weapon: {fileID: 6459279738644081342}
+  weapon: {fileID: 0}
   ammoText: {fileID: 414135356}
   spacing: 2
 --- !u!1 &270801934
@@ -2487,17 +2487,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6893032700105641579, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
   m_PrefabInstance: {fileID: 6515610665231438420}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6459279738644081342 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8120530846262817220, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
-  m_PrefabInstance: {fileID: 6515610665231438420}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895e80f2761a538418a043e85aa6da9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6515610665231438420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2558,11 +2547,34 @@ PrefabInstance:
       propertyPath: Recoil
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8120530846262817220, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1807189916207368807, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6515610665231438422}
   m_SourcePrefab: {fileID: 100100000, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
+--- !u!1 &6515610665231438421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1807189916207368807, guid: 151cfefe256fcfc4fb37d840a9ad849f, type: 3}
+  m_PrefabInstance: {fileID: 6515610665231438420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6515610665231438422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515610665231438421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca1d004e67521c4984b15cd70950652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 46be57752619b2f4aaea190a4c7d8cd1, type: 2}
+  firePoint: {fileID: 6459279738644081341}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

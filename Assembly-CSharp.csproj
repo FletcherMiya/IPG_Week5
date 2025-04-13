@@ -60,9 +60,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.57f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Weapons\AssaultRifle_1.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Pistol_1.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Enemies\NormalEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
@@ -70,7 +68,9 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Effects\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Effects\ScreenEffect.cs" />
+    <Compile Include="Assets\Scripts\Weapons\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Enemies\BossEnemy.cs" />
     <Compile Include="Assets\Scripts\CharacterStats.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />

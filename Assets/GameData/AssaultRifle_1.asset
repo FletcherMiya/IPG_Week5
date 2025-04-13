@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d07fff54b515b4cac03e4ceaa4376e, type: 3}
+  m_Name: AssaultRifle_1
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5717977097346049307, guid: a2d2686170797f24b96e0a63b6ffb9f1, type: 3}
+  fireRate: 0.1
+  reloadTime: 2
+  maxAmmo: 30
+  recoil: 2
+  isAutomatic: 1
