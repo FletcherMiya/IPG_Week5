@@ -1654,7 +1654,7 @@ MonoBehaviour:
   minSpawnDistance: 5
   maxSpawnDistance: 10
   bossSpawnChance: 0.1
-  initialWaveDuration: 30
+  initialWaveDuration: 5
   waveDurationIncrement: 3
   maxWaveDuration: 60
   initialSpawnInterval: 3
