@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,16 +43,6 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public int Score => score;
 
-    [Header("UI Control")]
-    public GameObject gameOverPanel;
-    public Button restartButton;
-    public TextMeshProUGUI scoreText;
-
-    public GameObject nextWavePanel;
-    public Button continueButton;
-    public TextMeshProUGUI waveText;
-    public TextMeshProUGUI waveTimerText;
-
     public bool IsGamePaused => Time.timeScale == 0f;
 
     private void Awake()
@@ -59,14 +50,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        gameOverPanel?.SetActive(false);
-        nextWavePanel?.SetActive(false);
     }
 
     private void Start()
     {
-        restartButton?.onClick.AddListener(RestartGame);
-        continueButton?.onClick.AddListener(StartNextWave);
+        UIManager.Instance.InitializeUI(StartNextWave, RestartGame);
 
         InitWaveSystem();
         StartNextWave();
@@ -76,8 +64,8 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        UpdateScoreText();
-        UpdateWaveTimerText();
+        UIManager.Instance.UpdateScore(score);
+        UIManager.Instance.UpdateWaveTimer(waveTimer, waveOngoing);
 
         if (waveOngoing)
         {
@@ -103,42 +91,38 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
+        UpgradeData selected = UIManager.Instance.GetSelectedUpgrade();
+        if (selected != null)
+        {
+            ApplyUpgrade(selected);
+        }
+
         ClearAllEnemies();
 
         Time.timeScale = 1f;
 
         currentWave++;
         waveTimer = currentWaveDuration;
-        waveText.text = $"WAVE {currentWave}";
 
-        nextWavePanel?.SetActive(false);
+        UIManager.Instance.UpdateWave(currentWave);
+        UIManager.Instance.ShowNextWavePanel(false);
+        UIManager.Instance.SetContinueButtonInteractable(false);
+
         waveOngoing = true;
 
         if (spawnRoutine != null) StopCoroutine(spawnRoutine);
         spawnRoutine = StartCoroutine(SpawnLoop());
-
-        UpdateWaveTimerText();
-    }
-
-    private void UpdateWaveTimerText()
-    {
-        if (waveTimerText == null) return;
-
-        if (waveOngoing)
-        {
-            waveTimerText.text = $"{waveTimer:F1}s";
-        }
-        else
-        {
-            waveTimerText.text = "Clear";
-        }
     }
 
     private void EndWave()
     {
         waveOngoing = false;
         Time.timeScale = 0f;
-        nextWavePanel?.SetActive(true);
+
+        UIManager.Instance.ShowNextWavePanel(true);
+        UIManager.Instance.SetContinueButtonInteractable(false);
+        List<UpgradeData> upgradeChoices = UpgradeLibrary.GetRandomUpgrades(3);
+        UIManager.Instance.ShowUpgradeChoices(upgradeChoices);
 
         currentWaveDuration = Mathf.Min(currentWaveDuration + waveDurationIncrement, maxWaveDuration);
         currentSpawnInterval = Mathf.Max(currentSpawnInterval - spawnIntervalDecrement, minSpawnInterval);
@@ -191,18 +175,11 @@ public class GameManager : MonoBehaviour
         score += amount;
     }
 
-    void UpdateScoreText()
-    {
-        if (scoreText != null)
-            scoreText.text = $"Score: {score}";
-    }
-
     public void GameOver()
     {
         isGameOver = true;
-
         Time.timeScale = 0f;
-        gameOverPanel?.SetActive(true);
+        UIManager.Instance.ShowGameOver();
 
         if (spawnRoutine != null)
             StopCoroutine(spawnRoutine);
@@ -213,5 +190,10 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ApplyUpgrade(UpgradeData data)
+    {
+        data.effect?.Apply(player.gameObject);
     }
 }
