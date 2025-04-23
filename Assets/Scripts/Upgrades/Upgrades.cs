@@ -19,3 +19,33 @@ public class MaxHealthUpgrade : UpgradeEffectBase
         }
     }
 }
+
+[CreateAssetMenu(menuName = "Upgrades/Effects/Current Health +1")]
+public class CurrentHealthUpgrade : UpgradeEffectBase
+{
+    public float healthRecover = 1f;
+
+    public override void Apply(GameObject player)
+    {
+        var stats = player.GetComponent<Player>().stats;
+        if (stats != null)
+        {
+            stats.health += healthRecover;
+        }
+    }
+}
+
+[CreateAssetMenu(menuName = "Upgrades/Effects/Max Speed +1")]
+public class MaxSpeedUpgrade : UpgradeEffectBase
+{
+    public float speedIncrease = 1f;
+
+    public override void Apply(GameObject player)
+    {
+        var stats = player.GetComponent<Player>().stats;
+        if (stats != null)
+        {
+            stats.speed += speedIncrease;
+        }
+    }
+}
