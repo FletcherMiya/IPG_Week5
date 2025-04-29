@@ -61,12 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Upgrades\UpgradeLibrary.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Upgrades.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeEffects\SpeedAdd.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeData.cs" />
     <Compile Include="Assets\Scripts\Enemies\NormalEnemy.cs" />
     <Compile Include="Assets\Scripts\UI\UpgradeOptionUI.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeEffects\MaxHealthAdd.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\UI\AmmoUI.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeEffects\CurrentHealthAdd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
