@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
   m_Name: Current Health +1
   m_EditorClassIdentifier: 
-  upgradeName: Medpack Tall
-  description: Heal your HP by 1
+  upgradeName: Compartment Maintenance
+  description: Heal your HP by 1.
   effect: {fileID: 11400000, guid: cc28192d09d0eb44193237f082e6fc8a, type: 2}

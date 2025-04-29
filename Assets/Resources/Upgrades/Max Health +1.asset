@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
   m_Name: Max Health +1
   m_EditorClassIdentifier: 
-  upgradeName: Max Health +1
-  description: Increase max health by 1
-  icon: {fileID: 0}
+  upgradeName: Add-on Armor
+  description: Increase max health by 1.
   effect: {fileID: 11400000, guid: b6a820ed4f0830542a387c16d6185b7a, type: 2}

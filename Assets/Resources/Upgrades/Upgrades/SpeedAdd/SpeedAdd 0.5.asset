@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
-  m_Name: Current Health +1 1
+  m_Script: {fileID: 11500000, guid: ec05dc7291acb4b46bac0bfcc2b7b8f5, type: 3}
+  m_Name: SpeedAdd 0.5
   m_EditorClassIdentifier: 
-  upgradeName: Section Maintenance
-  description: Heal your HP by 2.
-  effect: {fileID: 11400000, guid: 1562b27d8d0b06f45b1718c29de52c40, type: 2}
+  speedIncrease: 0.5

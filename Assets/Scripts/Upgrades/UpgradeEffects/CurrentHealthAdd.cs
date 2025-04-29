@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Effects/Current Health +1")]
 public class CurrentHealthUpgrade : UpgradeEffectBase
 {
-    public float healthRecover = 1f;
+    public float healthRecover;
 
     public override void Apply(GameObject player)
     {

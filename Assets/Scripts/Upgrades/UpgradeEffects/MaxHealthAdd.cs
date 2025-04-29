@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Effects/Max Health +1")]
 public class MaxHealthUpgrade : UpgradeEffectBase
 {
-    public float healthIncrease = 1f;
+    public float healthIncrease;
 
     public override void Apply(GameObject player)
     {

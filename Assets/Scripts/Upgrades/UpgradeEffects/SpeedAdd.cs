@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Effects/Max Speed +1")]
 public class MaxSpeedUpgrade : UpgradeEffectBase
 {
-    public float speedIncrease = 1f;
+    public float speedIncrease;
 
     public override void Apply(GameObject player)
     {

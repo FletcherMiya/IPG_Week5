@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
-  m_Name: Current Health +1 1
+  m_Name: Speed +0.5
   m_EditorClassIdentifier: 
-  upgradeName: Section Maintenance
-  description: Heal your HP by 2.
-  effect: {fileID: 11400000, guid: 1562b27d8d0b06f45b1718c29de52c40, type: 2}
+  upgradeName: Light Weight Structure
+  description: Increase your speed by a small amount.
+  effect: {fileID: 11400000, guid: 39e960d172ee6ff4eb6be0feb9668724, type: 2}
