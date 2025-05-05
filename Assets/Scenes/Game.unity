@@ -1583,14 +1583,14 @@ MonoBehaviour:
   player: {fileID: 396132526}
   minSpawnDistance: 5
   maxSpawnDistance: 10
-  bossSpawnChance: 0.1
+  bossSpawnChance: 0.3
   initialWaveDuration: 5
-  waveDurationIncrement: 3
+  waveDurationIncrement: 2
   maxWaveDuration: 60
-  initialSpawnInterval: 3
+  initialSpawnInterval: 5
   spawnIntervalDecrement: 0.3
   minSpawnInterval: 0.5
-  initialSpawnCount: 3
+  initialSpawnCount: 1
   spawnCountIncrement: 0
 --- !u!4 &1021636347
 Transform:

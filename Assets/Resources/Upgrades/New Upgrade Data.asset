@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
   m_Name: New Upgrade Data
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
-  effect: {fileID: 0}
+  upgradeName: Full-Auto Conversion
+  description: Install a module to enable sustained automatic fire.
+  effect: {fileID: 11400000, guid: 2f9ce5ed442992b4a9058e9a7fba5948, type: 2}
