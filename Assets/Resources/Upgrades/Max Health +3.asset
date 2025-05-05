@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Max Health +3
   m_EditorClassIdentifier: 
   upgradeName: Depleted Uranium Armor
-  description: Increase max health by 3.
+  description: Install depleted uranium composite armor. Increase max health by a
+    large amount.
   effect: {fileID: 11400000, guid: af9cb174cd31ed847982738ff471081e, type: 2}

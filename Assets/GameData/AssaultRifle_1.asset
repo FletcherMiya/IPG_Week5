@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AssaultRifle_1
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5717977097346049307, guid: a2d2686170797f24b96e0a63b6ffb9f1, type: 3}
-  fireRate: 0.1
-  reloadTime: 2
-  maxAmmo: 30
+  fireRate: 1
+  reloadTime: 5
+  maxAmmo: 7
   recoil: 2
-  isAutomatic: 1
+  isAutomatic: 0

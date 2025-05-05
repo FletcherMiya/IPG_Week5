@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Max Health +2
   m_EditorClassIdentifier: 
   upgradeName: NERA Interlayer
-  description: Increase max health by 2.
+  description: Insert non-explosive reactive layers. Increase max health by a moderate
+    amount.
   effect: {fileID: 11400000, guid: b4de7d294ab66e44a8b5fc0edc81ab41, type: 2}

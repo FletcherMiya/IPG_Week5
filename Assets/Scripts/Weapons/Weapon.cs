@@ -10,10 +10,17 @@ public abstract class Weapon : MonoBehaviour
     protected bool isReloading = false;
     protected float lastFireTime;
 
+    protected GameObject projectilePrefab;
+    protected float fireRate;
+    protected float reloadTime;
+    protected int maxAmmo;
+    protected float recoil;
+    protected bool isAutomatic;
+
     #region Getters
 
     public int CurrentAmmo => currentAmmo;
-    public int MaxAmmo => data != null ? data.maxAmmo : 0;
+    public int MaxAmmo => maxAmmo;
     public bool IsReloading => isReloading;
 
     #endregion
@@ -26,6 +33,13 @@ public abstract class Weapon : MonoBehaviour
             return;
         }
 
+        projectilePrefab = data.projectilePrefab;
+        fireRate = data.fireRate;
+        reloadTime = data.reloadTime;
+        maxAmmo = data.maxAmmo;
+        recoil = data.recoil;
+        isAutomatic = data.isAutomatic;
+
         currentAmmo = data.maxAmmo;
     }
 
@@ -33,9 +47,9 @@ public abstract class Weapon : MonoBehaviour
     {
         if (!CanShoot()) return;
 
-        if ((data.isAutomatic && Input.GetMouseButton(0)) || (!data.isAutomatic && Input.GetMouseButtonDown(0)))
+        if ((isAutomatic && Input.GetMouseButton(0)) || (!isAutomatic && Input.GetMouseButtonDown(0)))
         {
-            if (Time.time - lastFireTime >= data.fireRate)
+            if (Time.time - lastFireTime >= fireRate)
             {
                 Shoot();
             }
@@ -69,7 +83,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void FireProjectile(Vector2 direction)
     {
-        GameObject projectile = Instantiate(data.projectilePrefab, firePoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().SetDirection(direction);
 
         if (transform.parent != null)
@@ -87,7 +101,7 @@ public abstract class Weapon : MonoBehaviour
         if (rb != null)
         {
             Vector2 recoilDirection = -shotDirection.normalized;
-            rb.AddForce(recoilDirection * data.recoil, ForceMode2D.Impulse);
+            rb.AddForce(recoilDirection * recoil, ForceMode2D.Impulse);
         }
     }
 
@@ -95,8 +109,8 @@ public abstract class Weapon : MonoBehaviour
     {
         isReloading = true;
         Debug.Log($"{gameObject.name} is reloading...");
-        yield return new WaitForSeconds(data.reloadTime);
-        currentAmmo = data.maxAmmo;
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
         isReloading = false;
         Debug.Log($"{gameObject.name} reloaded!");
     }
@@ -107,5 +121,52 @@ public abstract class Weapon : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.IsGamePaused) return false;
         if (transform.parent.GetComponent<Player>().checkDead()) return false;
         return true;
+    }
+
+    //Upgrade Functions
+
+    public void MultiplyFirerate(float multiplier)
+    {
+        fireRate *= multiplier;
+    }
+
+    public void AddFirerate(float amount)
+    {
+        fireRate += amount;
+    }
+
+    public void MultiplyReloadTime(float multiplier)
+    {
+        reloadTime += multiplier;
+    }
+
+    public void AddReloadTime(float amount)
+    {
+        reloadTime += amount;
+    }
+
+    public void AddMaxamoo(int amount)
+    {
+        maxAmmo += amount;
+    }
+
+    public void MultiplyRecoil(float multiplier)
+    {
+        recoil *= multiplier;
+    }
+
+    public void AddRecoil(float amount)
+    {
+        recoil += amount;
+    }
+
+    public void SetAutomatic(bool mode)
+    {
+        isAutomatic = mode;
+    }
+
+    public void SetProjectile(GameObject newProjectile)
+    {
+        projectilePrefab = newProjectile;
     }
 }

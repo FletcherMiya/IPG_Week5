@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Max Health +1
   m_EditorClassIdentifier: 
   upgradeName: Add-on Armor
-  description: Increase max health by 1.
+  description: Mount additional armor plates. Increase max health by a small amount.
   effect: {fileID: 11400000, guid: b6a820ed4f0830542a387c16d6185b7a, type: 2}

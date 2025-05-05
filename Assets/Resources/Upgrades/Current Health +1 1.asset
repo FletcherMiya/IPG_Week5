@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
   m_Name: Current Health +1 1
   m_EditorClassIdentifier: 
-  upgradeName: Section Maintenance
-  description: Heal your HP by 2.
+  upgradeName: Armor Maintenance
+  description: Replace the damaged armor plates. Heal your HP by a moderate amount.
   effect: {fileID: 11400000, guid: 1562b27d8d0b06f45b1718c29de52c40, type: 2}

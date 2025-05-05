@@ -13,6 +13,8 @@ public class AmmoUI : MonoBehaviour
 
     public TextMeshProUGUI ammoText;
 
+    private int lastMaxAmmo = -1;
+
     void Start()
     {
         if (weapon == null)
@@ -29,6 +31,12 @@ public class AmmoUI : MonoBehaviour
     {
         if (weapon != null)
         {
+            if (weapon.MaxAmmo != lastMaxAmmo)
+            {
+                lastMaxAmmo = weapon.MaxAmmo;
+                BuildSegments();
+            }
+
             UpdateSegments();
             UpdateAmmoText();
         }
@@ -45,6 +53,7 @@ public class AmmoUI : MonoBehaviour
         if (weapon == null || bulletSegmentPrefab == null) return;
 
         int maxAmmo = weapon.MaxAmmo;
+        lastMaxAmmo = maxAmmo;
 
         float totalSpacing = spacing * (maxAmmo - 1);
         float segmentWidth = (containerWidth - totalSpacing) / maxAmmo;

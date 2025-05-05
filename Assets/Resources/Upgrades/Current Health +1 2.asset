@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Current Health +1 2
   m_EditorClassIdentifier: 
   upgradeName: Hull Maintenance
-  description: Heal your HP by 3.
+  description: Repair internal hull breaches and structural damage. Heal your HP
+    by a large amount.
   effect: {fileID: 11400000, guid: 8dd913f5eac2f4647b05d3ecd81a8387, type: 2}

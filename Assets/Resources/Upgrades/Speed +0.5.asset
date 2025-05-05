@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64568efa1616047afc6927b2495eb4, type: 3}
   m_Name: Speed +0.5
   m_EditorClassIdentifier: 
-  upgradeName: Light Weight Structure
-  description: Increase your speed by a small amount.
+  upgradeName: Engine Tuning
+  description: Tune the engine for improved responsiveness. Increase your speed by
+    a small amount.
   effect: {fileID: 11400000, guid: 39e960d172ee6ff4eb6be0feb9668724, type: 2}
