@@ -9,21 +9,21 @@ public class SpiderController2D : MonoBehaviour
     public List<SpiderLeg2D> rightLegs = new List<SpiderLeg2D>();
 
     [Header("Timing")]
-    public float stepInterval = 0.2f;      // 每条腿踏步后的冷却时间
-    public float interSideDelay = 0.1f;    // 左右腿之间最小起步间隔
+    public float stepInterval = 0.2f;
+    public float interSideDelay = 0.1f;
 
     private bool isLeftLegMoving = false;
     private bool isRightLegMoving = false;
 
-    private float lastStepTime = -999f;    // 上一次起步时间
-    private int lastSideMoved = 0;         // -1 = 左，+1 = 右
+    private float lastStepTime = -999f;
+    private int lastSideMoved = 0;
 
     private Vector3 lastBodyPos;
     private float idleTimer = 0f;
 
     [Header("Idle Repositioning")]
     public Transform bodyTransform;
-    public float idleThreshold = 0.5f; // 玩家静止多少秒后触发归位模式
+    public float idleThreshold = 0.5f;
     private bool isIdleStepping = false;
 
     void Update()
@@ -41,7 +41,6 @@ public class SpiderController2D : MonoBehaviour
             idleTimer = 0f;
             isIdleStepping = false;
 
-            // 玩家一旦移动 → 重置所有归位标记
             foreach (var leg in leftLegs) leg.ResetIdleStep();
             foreach (var leg in rightLegs) leg.ResetIdleStep();
         }
@@ -77,7 +76,7 @@ public class SpiderController2D : MonoBehaviour
                 continue;
 
             if (forceStep && leg.didIdleStep)
-                continue; // 已经归位过，不再重复
+                continue;
 
             float urgency = leg.GetStepUrgency();
             if (urgency > maxUrgency)
