@@ -14,6 +14,7 @@ public class SpiderLeg2D : MonoBehaviour
     public float stepThreshold = 1f;
     public float stepHeight = 0.5f;
     public float stepDuration = 0.2f;
+    public float restOffsetFactor = 1f;
 
     [Header("IK Control")]
     public Vector2 bendDirectionHint = Vector2.up;
@@ -25,10 +26,16 @@ public class SpiderLeg2D : MonoBehaviour
     [HideInInspector]
     public bool didIdleStep = false;
 
+    private LineRenderer lineRenderer;
+
     void Start()
     {
         restOffset = transform.localPosition;
-        footPos = (Vector2)transform.position + restOffset;
+        footPos = (Vector2)transform.position + restOffset * restOffsetFactor;
+
+        lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer != null)
+            lineRenderer.positionCount = 3;
     }
 
     void Update()
@@ -39,7 +46,7 @@ public class SpiderLeg2D : MonoBehaviour
 
     public bool IsReadyToStep()
     {
-        float dist = Vector2.Distance((Vector2)transform.position + restOffset, footPos);
+        float dist = Vector2.Distance((Vector2)transform.position + restOffset * restOffsetFactor, footPos);
         return !isStepping && dist > stepThreshold;
     }
 
@@ -47,7 +54,7 @@ public class SpiderLeg2D : MonoBehaviour
     {
         isStepping = true;
         Vector2 startPos = footPos;
-        Vector2 targetPos = (Vector2)transform.position + restOffset;
+        Vector2 targetPos = (Vector2)transform.position + restOffset * restOffsetFactor;
         float t = 0f;
 
         while (t < 1f)
@@ -67,7 +74,8 @@ public class SpiderLeg2D : MonoBehaviour
     void SolveAndApplyIK()
     {
         Vector2 rootPos = transform.position;
-        Vector2 kneePos = SolveKnee_AlwaysUp(rootPos, footPos, thighLength, calfLength);
+        //Vector2 kneePos = SolveKnee_AlwaysUp(rootPos, footPos, thighLength, calfLength);
+        Vector2 kneePos = SolveKnee(rootPos, footPos, thighLength, calfLength, bendDirectionHint.normalized);
 
         thigh.position = rootPos;
         thigh.up = (kneePos - rootPos).normalized;
@@ -78,7 +86,17 @@ public class SpiderLeg2D : MonoBehaviour
         calf.localScale = new Vector3(1, calfLength, 1);
 
         if (foot != null)
+        {
             foot.position = footPos;
+        }
+            
+
+        if (lineRenderer != null)
+        {
+            lineRenderer.SetPosition(0, rootPos);
+            lineRenderer.SetPosition(1, kneePos);
+            lineRenderer.SetPosition(2, footPos);
+        }
     }
 
     Vector2 SolveKnee_AlwaysUp(Vector2 root, Vector2 foot, float len1, float len2)
@@ -93,7 +111,7 @@ public class SpiderLeg2D : MonoBehaviour
         Vector2 dir = toFoot.normalized;
         Vector2 mid = root + dir * a;
 
-        Vector2 perp = Vector2.Perpendicular(dir); // ·¨Ïò
+        Vector2 perp = Vector2.Perpendicular(dir);
         if (Vector2.Dot(perp, Vector2.up) < 0)
             perp = -perp;
 
@@ -101,7 +119,6 @@ public class SpiderLeg2D : MonoBehaviour
         return knee;
     }
 
-    /*
     Vector2 SolveKnee(Vector2 root, Vector2 foot, float len1, float len2, Vector2 bendDir)
     {
         Vector2 toFoot = foot - root;
@@ -120,11 +137,10 @@ public class SpiderLeg2D : MonoBehaviour
         Vector2 knee = mid + perp * h;
         return knee;
     }
-    */
 
     public float GetStepUrgency()
     {
-        Vector2 idealPos = (Vector2)transform.position + restOffset;
+        Vector2 idealPos = (Vector2)transform.position + restOffset * restOffsetFactor;
         return Vector2.Distance(idealPos, footPos);
     }
 
