@@ -9,24 +9,32 @@ public class Enemy : MonoBehaviour, IDamageable
     public float damage = 10f;
     public float stoppingDistance = 0.5f;
 
+    private AITurretController aiController;
+
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
+        aiController = GetComponentInChildren<AITurretController>();
+        if (aiController == null)
+        {
+            Debug.LogError("Enemy missing AITurretController on child.");
+        }
     }
 
     protected virtual void FixedUpdate()
     {
-        MoveTowardsPlayer();
+        MoveTowardsAITarget();
     }
 
-    protected void MoveTowardsPlayer()
+    protected void MoveTowardsAITarget()
     {
-        if (player == null) return;
+        if (aiController == null || aiController.moveTarget == null) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
-        float distance = Vector2.Distance(transform.position, player.position);
+        Vector2 direction = (aiController.moveTarget.position - transform.position).normalized;
+        float distance = Vector2.Distance(transform.position, aiController.moveTarget.position);
 
         if (distance > stoppingDistance)
         {

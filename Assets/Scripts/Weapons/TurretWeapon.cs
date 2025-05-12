@@ -1,4 +1,3 @@
-// TurretAimingWeapon.cs
 using UnityEngine;
 using System.Collections;
 
@@ -24,6 +23,7 @@ public class TurretWeapon : Weapon
     }
     protected override void Update()
     {
+        /*
         AimTurretAtMouse();
 
         if (!CanShoot()) return;
@@ -40,6 +40,8 @@ public class TurretWeapon : Weapon
         {
             StartCoroutine(Reload());
         }
+        */
+        //Legacy Player Control Logic
     }
 
     void AimTurretAtMouse()
@@ -101,5 +103,31 @@ public class TurretWeapon : Weapon
         }
 
         barrelPivot.localPosition = originalLocalPos;
+    }
+
+    public void AimAt(Vector3 worldPosition)
+    {
+        if (turretBase == null) return;
+
+        Vector3 direction = worldPosition - turretBase.position;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float currentAngle = turretBase.eulerAngles.z;
+        float angle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
+        turretBase.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    public void ManualShoot(Vector2 direction)
+    {
+        if (!CanShoot() || currentAmmo <= 0) return;
+
+        FireProjectile(direction);
+        currentAmmo--;
+        lastFireTime = Time.time;
+
+        ScreenEffect.Instance.TriggerEffect(0.2f, 0.1f, Color.white);
+        CameraShake.Instance.Shake(0.05f, 0.05f);
+
+        if (recoilCoroutine != null) StopCoroutine(recoilCoroutine);
+        recoilCoroutine = StartCoroutine(BarrelRecoil());
     }
 }

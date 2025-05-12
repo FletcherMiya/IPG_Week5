@@ -22,6 +22,9 @@ public abstract class Weapon : MonoBehaviour
     public int CurrentAmmo => currentAmmo;
     public int MaxAmmo => maxAmmo;
     public bool IsReloading => isReloading;
+    public float FireRate => fireRate;
+    public float LastFireTime => lastFireTime;
+    public bool IsAutomatic => isAutomatic;
 
     #endregion
 
@@ -39,12 +42,14 @@ public abstract class Weapon : MonoBehaviour
         maxAmmo = data.maxAmmo;
         recoil = data.recoil;
         isAutomatic = data.isAutomatic;
+        lastFireTime = Time.time;
 
         currentAmmo = data.maxAmmo;
     }
 
     protected virtual void Update()
     {
+        /*
         if (!CanShoot()) return;
 
         if ((isAutomatic && Input.GetMouseButton(0)) || (!isAutomatic && Input.GetMouseButtonDown(0)))
@@ -59,6 +64,7 @@ public abstract class Weapon : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
+        */
     }
 
     public virtual void Shoot()
@@ -119,7 +125,8 @@ public abstract class Weapon : MonoBehaviour
     {
         if (isReloading) return false;
         if (GameManager.Instance != null && GameManager.Instance.IsGamePaused) return false;
-        if (transform.parent.GetComponent<Player>().checkDead()) return false;
+        Player player = transform.parent.GetComponent<Player>();
+        if (player != null && player.checkDead()) return false;
         return true;
     }
 
