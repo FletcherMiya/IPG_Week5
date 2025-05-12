@@ -74,8 +74,8 @@ public class SpiderLeg2D : MonoBehaviour
     void SolveAndApplyIK()
     {
         Vector2 rootPos = transform.position;
-        //Vector2 kneePos = SolveKnee_AlwaysUp(rootPos, footPos, thighLength, calfLength);
-        Vector2 kneePos = SolveKnee(rootPos, footPos, thighLength, calfLength, bendDirectionHint.normalized);
+        Vector2 kneePos = SolveKnee_AlwaysUp(rootPos, footPos, thighLength, calfLength);
+        //Vector2 kneePos = SolveKnee(rootPos, footPos, thighLength, calfLength, bendDirectionHint.normalized);
 
         thigh.position = rootPos;
         thigh.up = (kneePos - rootPos).normalized;

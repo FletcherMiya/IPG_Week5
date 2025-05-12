@@ -178,7 +178,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: -1, y: -1}
   didIdleStep: 0
 --- !u!120 &52116507
@@ -222,7 +222,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -655,7 +655,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: 1, y: -1}
   didIdleStep: 0
 --- !u!120 &354370555
@@ -699,7 +699,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: 1, y: 1}
   didIdleStep: 0
 --- !u!120 &848850161
@@ -1911,7 +1911,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: -1, y: 1}
   didIdleStep: 0
 --- !u!120 &1392746067
@@ -2966,7 +2966,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -3379,7 +3379,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: 1, y: 1}
   didIdleStep: 0
 --- !u!120 &1748721467
@@ -3423,7 +3423,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -3964,7 +3964,7 @@ MonoBehaviour:
   stepThreshold: 1
   stepHeight: 0.5
   stepDuration: 0.1
-  restOffsetFactor: 1.5
+  restOffsetFactor: 2
   bendDirectionHint: {x: 1, y: 1}
   didIdleStep: 0
 --- !u!120 &2101881581
@@ -4008,7 +4008,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
