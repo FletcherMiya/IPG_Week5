@@ -26,8 +26,6 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.drag = 0;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
         CalculateCameraBounds();
     }
 
@@ -85,7 +83,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            StartCoroutine(InvincibilityCoroutine());
+            //StartCoroutine(InvincibilityCoroutine());
         }
     }
 

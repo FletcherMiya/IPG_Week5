@@ -6,8 +6,7 @@ public class Enemy : MonoBehaviour, IDamageable
     protected Transform player;
     private Rigidbody2D rb;
 
-    public float damage = 10f;
-    public float stoppingDistance = 0.5f;
+    public float stoppingDistance = 0.1f;
 
     private AITurretController aiController;
 
@@ -60,17 +59,6 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             GameManager.Instance.AddScore(10);
             Destroy(gameObject);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            if (damageable is Player)
-            {
-                damageable.TakeDamage(damage);
-            }
         }
     }
 }
