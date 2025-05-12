@@ -49,6 +49,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         stats.health -= damage;
+
+        AITurretController ai = GetComponentInChildren<AITurretController>();
+        if (ai != null)
+        {
+            ai.AlertFromDamage();
+        }
+
         if (stats.health <= 0)
         {
             GameManager.Instance.AddScore(10);

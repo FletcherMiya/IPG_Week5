@@ -31,6 +31,10 @@ public class AITurretController : MonoBehaviour
     private Vector3 idleAimPosition;
     private bool isInIdleScan = false;
 
+    private bool isAlertedByDamage = false;
+    private float alertDuration = 5f;
+    private float alertTimer = 0f;
+
     //private float aimUpdateCooldown = 0.5f;
     //private float moveUpdateCooldown = 1.0f;
     //private float aimTimer = 0f;
@@ -55,6 +59,15 @@ public class AITurretController : MonoBehaviour
             return;
         }
 
+        if (isAlertedByDamage)
+        {
+            alertTimer -= Time.deltaTime;
+            if (alertTimer <= 0f)
+            {
+                isAlertedByDamage = false;
+            }
+        }
+
         UpdateAimTarget();
         if (IsTargetVisible() && PlayerMoveTargetDistanceCheck())
         {
@@ -62,7 +75,7 @@ public class AITurretController : MonoBehaviour
         }
 
 
-        if (IsTargetVisible() || IsTargetVeryClose())
+        if (IsTargetVisible() || IsTargetVeryClose() || isAlertedByDamage)
         {
             turretWeapon.AimAt(target.position);
             if (IsTurretAimedAtPosition(aimTarget.position))
@@ -71,7 +84,7 @@ public class AITurretController : MonoBehaviour
             }
         }
 
-        if (!IsTargetVisible())
+        if (!IsTargetVisible() && !isAlertedByDamage)
         {
             idleScanTimer += Time.deltaTime;
 
@@ -94,10 +107,9 @@ public class AITurretController : MonoBehaviour
         }
         else
         {
-            idleScanTimer = 0f;
             isInIdleScan = false;
+            idleScanTimer = 0f;
         }
-
     }
 
     void UpdateAimTarget()
@@ -174,5 +186,10 @@ public class AITurretController : MonoBehaviour
 
         Vector3 offset = Quaternion.Euler(0, 0, finalAngle) * Vector3.right * idleScanRadius;
         idleAimPosition = turretWeapon.turretBase.position + offset;
+    }
+    public void AlertFromDamage()
+    {
+        isAlertedByDamage = true;
+        alertTimer = alertDuration;
     }
 }

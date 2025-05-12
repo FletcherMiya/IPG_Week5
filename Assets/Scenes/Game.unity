@@ -4842,8 +4842,13 @@ MonoBehaviour:
   target: {fileID: 0}
   aimTarget: {fileID: 1904872225}
   moveTarget: {fileID: 18815157}
+  idleScanInterval: 3
+  idleScanRadius: 3
+  idleScanMinAngle: 20
+  idleScanMaxAngle: 60
   visionRadius: 10
   visionAngle: 90
+  closeRangeOverride: 3
   aimLerpSpeed: 5
   hitChance: 0.7
   moveRadius: 3
@@ -6304,11 +6309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223176475498039007, guid: d0b5954d591de554390f7f2096832cbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.285
+      value: 3.51
       objectReference: {fileID: 0}
     - target: {fileID: 8223176475498039007, guid: d0b5954d591de554390f7f2096832cbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.705
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: 8223176475498039007, guid: d0b5954d591de554390f7f2096832cbc, type: 3}
       propertyPath: m_LocalPosition.z
