@@ -14,7 +14,8 @@ public class AITurretController : MonoBehaviour
     [Header("FOV")]
     public float visionRadius = 10f;
     [Range(0f, 180f)]
-    public float visionAngle = 60f;
+    public float visionAngle;
+    public float closeRangeOverride;
 
     [Header("Aiming")]
     public float aimLerpSpeed = 5f;
@@ -61,7 +62,7 @@ public class AITurretController : MonoBehaviour
         }
 
 
-        if (IsTargetVisible())
+        if (IsTargetVisible() || IsTargetVeryClose())
         {
             turretWeapon.AimAt(target.position);
             if (IsTurretAimedAtPosition(aimTarget.position))
@@ -144,6 +145,12 @@ public class AITurretController : MonoBehaviour
         float angle = Vector3.Angle(turretWeapon.turretBase.right, toTarget);
 
         return distance <= visionRadius && angle <= visionAngle * 0.5f;
+    }
+
+    bool IsTargetVeryClose()
+    {
+        float distance = Vector3.Distance(turretWeapon.turretBase.position, target.position);
+        return distance <= closeRangeOverride;
     }
 
     bool IsTurretAimedAtPosition(Vector3 pos, float angleThreshold = 5f)
