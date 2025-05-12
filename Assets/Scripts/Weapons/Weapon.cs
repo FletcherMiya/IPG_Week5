@@ -95,7 +95,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    private void ApplyRecoil(GameObject shooter, Vector2 shotDirection)
+    protected void ApplyRecoil(GameObject shooter, Vector2 shotDirection)
     {
         Rigidbody2D rb = shooter.GetComponent<Rigidbody2D>();
         if (rb != null)

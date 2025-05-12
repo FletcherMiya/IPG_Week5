@@ -84,7 +84,9 @@
     <Compile Include="Assets\Scripts\Effects\ScreenEffect.cs" />
     <Compile Include="Assets\Scripts\Weapons\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeEffectBase.cs" />
+    <Compile Include="Assets\Scripts\Effects\SmokeLineRenderer.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Weapons\TurretWeapon.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeEffects\AddMaxAmmoUpgrade.cs" />
     <Compile Include="Assets\Scripts\Enemies\BossEnemy.cs" />
     <Compile Include="Assets\Scripts\CharacterStats.cs" />
