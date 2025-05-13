@@ -1139,9 +1139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 5
+    maxHealth: 10
     health: 5
-    damage: 20
     speed: 1
   invincibilityDuration: 1
   flashInterval: 0.1
@@ -3184,7 +3183,7 @@ MonoBehaviour:
   minSpawnDistance: 5
   maxSpawnDistance: 10
   bossSpawnChance: 0.3
-  initialWaveDuration: 500
+  initialWaveDuration: 30
   waveDurationIncrement: 2
   maxWaveDuration: 60
   initialSpawnInterval: 10

@@ -8,7 +8,7 @@ public class SpiderLeg2D : MonoBehaviour
     public Transform calf;
     public Transform foot;
 
-    [Header("IK & Step Settings")]
+    [Header("IK Settings")]
     public float thighLength = 1f;
     public float calfLength = 1f;
     public float stepThreshold = 1f;

@@ -1921,7 +1921,8 @@ MonoBehaviour:
   visionAngle: 90
   closeRangeOverride: 3
   aimLerpSpeed: 5
-  hitChance: 0.7
+  hitChance: 0.5
+  missAngleOffset: 5
   moveRadius: 3
   minMoveRadius: 1
   reselectThreshold: 3

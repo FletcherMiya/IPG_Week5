@@ -20,6 +20,7 @@ public class AITurretController : MonoBehaviour
     [Header("Aiming")]
     public float aimLerpSpeed = 5f;
     public float hitChance = 0.7f;
+    public float missAngleOffset = 5f;
 
     [Header("Moving")]
     public float moveRadius = 3.0f;
@@ -80,7 +81,7 @@ public class AITurretController : MonoBehaviour
             turretWeapon.AimAt(target.position);
             if (IsTurretAimedAtPosition(aimTarget.position))
             {
-                TryShoot();
+                TryShootWithAccuracy();
             }
         }
 
@@ -142,12 +143,46 @@ public class AITurretController : MonoBehaviour
         return playerToMoveTarget > reselectThreshold;
     }
 
-    void TryShoot()
+    public void TryShootWithAccuracy()
     {
         if (Time.time - turretWeapon.LastFireTime < turretWeapon.FireRate) return;
 
+        if (Random.value <= hitChance)
+        {
+            TryShoot(); 
+        }
+        else
+        {
+            TryShootOffset(missAngleOffset);
+        }
+    }
+
+    void TryShoot()
+    {
+        //if (Time.time - turretWeapon.LastFireTime < turretWeapon.FireRate) return;
+
         Vector2 direction = turretWeapon.barrelPivot.right.normalized;
         turretWeapon.ManualShoot(direction);
+    }
+
+    void TryShootOffset(float offsetAngle)
+    {
+        //if (Time.time - turretWeapon.LastFireTime < turretWeapon.FireRate) return;
+
+        Vector2 direction = turretWeapon.barrelPivot.right.normalized;
+
+        float angle = (Random.value < 0.5f ? -1f : 1f) * offsetAngle;
+        float rad = angle * Mathf.Deg2Rad;
+
+        float sin = Mathf.Sin(rad);
+        float cos = Mathf.Cos(rad);
+
+        Vector2 offsetDirection = new Vector2(
+            direction.x * cos - direction.y * sin,
+            direction.x * sin + direction.y * cos
+        ).normalized;
+
+        turretWeapon.ManualShoot(offsetDirection);
     }
 
     bool IsTargetVisible()
